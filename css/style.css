@@ -82,6 +82,9 @@ img{max-width:100%;display:block;}
 .btn-primary:hover{box-shadow:0 14px 30px -12px rgba(242,183,5,.55);}
 .btn-outline{border-color:var(--teal);color:var(--teal-dark);background:transparent;}
 .btn-outline:hover{background:var(--teal-tint);}
+.btn-phone-header{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--teal);color:var(--teal-dark);
+  font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+.btn-phone-header:hover{background:var(--teal-tint);}
 .btn-ghost{color:var(--panel);border-color:rgba(255,255,255,.5);}
 
 /* ---- hero split ---- */
@@ -431,6 +434,8 @@ table.info tbody tr:last-child td{border-bottom:none;}
     display:none;gap:18px;}
   .nav.open{display:flex;}
   .nav-toggle{display:block;}
+  .btn-phone-header .phone-number{display:none;}
+  .btn-phone-header{padding:8px 10px;}
   .process{grid-template-columns:1fr;}
   .cta-band{flex-direction:column;align-items:flex-start;}
   footer .wrap{flex-direction:column;}
