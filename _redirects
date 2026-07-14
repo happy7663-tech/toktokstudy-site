@@ -1,3 +1,1 @@
-/edu-news    https://wawa-consultation-form.onrender.com/posts  200
-/edu-news/    https://wawa-consultation-form.onrender.com/posts  200
 /edu-news/*  https://wawa-consultation-form.onrender.com/posts/:splat  200
