@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 최근 블로그 포스팅 불러오기
   const blogFeedEl = document.getElementById("blog-feed");
   if (blogFeedEl) {
-    fetch("https://wawa-consultation-form.onrender.com/blog-feed?limit=10")
+    fetch("https://wawa-consultation-form.onrender.com/blog-feed?limit=20")
       .then((res) => {
         if (!res.ok) throw new Error("요청 실패");
         return res.json();
