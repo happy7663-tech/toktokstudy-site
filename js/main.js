@@ -81,6 +81,46 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+  // 메인 "학습 가이드": 블로그 RSS에서 최신 글 6개를 불러와 교체 (실패하면 HTML에 적힌 목록 그대로 유지)
+  const guideEl = document.getElementById("guide-feed");
+  if (guideEl && "DOMParser" in window) {
+    fetch("https://blog.toktokstudy.com/rss.xml")
+      .then((res) => {
+        if (!res.ok) throw new Error("요청 실패");
+        return res.text();
+      })
+      .then((xmlText) => {
+        const doc = new DOMParser().parseFromString(xmlText, "application/xml");
+        const items = Array.from(doc.querySelectorAll("item")).slice(0, 6);
+        if (items.length < 3) return;
+        const pick = (item, tag) => {
+          const el = item.querySelector(tag);
+          return el ? el.textContent.trim() : "";
+        };
+        guideEl.innerHTML = items
+          .map((item) => {
+            const title = pick(item, "title").replace(/^"(.*)"$/, "$1");
+            const link = pick(item, "link");
+            const d = new Date(pick(item, "pubDate"));
+            const dateStr = !isNaN(d)
+              ? `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`
+              : "";
+            let desc = pick(item, "description");
+            if (desc === title) desc = "";
+            if (desc.length > 80) desc = desc.slice(0, 80).trim() + "…";
+            if (!/^https:\/\/blog\.toktokstudy\.com\//.test(link)) return "";
+            return `
+        <a class="guide-card" href="${escapeHtml(link)}">
+          <div class="guide-date">${dateStr}</div>
+          <h3>${escapeHtml(title)}</h3>
+          ${desc ? `<p>${escapeHtml(desc)}</p>` : ""}
+        </a>`;
+          })
+          .join("");
+      })
+      .catch(() => {});
+  }
+
   // 방문자 카운터
   const vcTotal = document.getElementById("vc-total");
   const vcToday = document.getElementById("vc-today");
