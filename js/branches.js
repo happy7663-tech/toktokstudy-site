@@ -21,5 +21,9 @@ const BRANCHES = [
 
   // ===== 부산광역시 =====
   { si: "부산광역시", gu: "북구", dong: "화명동", name: "화명점", address: "부산 북구 금곡대로285번길 19 리버사이드빌딩 504호", file: "hwamyeong" },
+  { si: "부산광역시", gu: "동래구", dong: "사직동", name: "사직점", address: "부산 동래구 사직로 80 222동 311호 (사직쌍용예가아파트 상가)", file: "sajik" },
+  { si: "부산광역시", gu: "동래구", dong: "온천동", name: "동래점", address: "부산 동래구 충렬대로 129-1 한아빌딩 3층", file: "dongnae" },
+  { si: "부산광역시", gu: "해운대구", dong: "반여동", name: "반여점", address: "부산 해운대구 반여로 102 경성빌딩 501호", file: "banyeo" },
+  { si: "부산광역시", gu: "해운대구", dong: "좌동", name: "좌동점", address: "부산 해운대구 좌동로 88 울트라타워 5층 508호", file: "jwadong" },
 
 ];
