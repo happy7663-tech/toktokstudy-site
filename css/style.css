@@ -458,3 +458,20 @@ table.info tbody tr:last-child td{border-bottom:none;}
 .guide-card p{margin-top:10px;font-size:14px;line-height:1.6;color:var(--ink-soft);}
 @media(max-width:900px){.guide-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:600px){.guide-grid{grid-template-columns:1fr;}}
+
+/* ---- 와와학원 지점 찾기 (시/구/동 드롭다운) ---- */
+.branch-finder{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);}
+.bf-selects{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.bf-selects label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--ink-soft);min-width:0;}
+.bf-selects select{appearance:none;-webkit-appearance:none;width:100%;padding:13px 40px 13px 14px;font:inherit;font-size:16px;font-weight:500;color:var(--ink);background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231F6F6B' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center;border:1px solid var(--line);border-radius:10px;cursor:pointer;}
+.bf-selects select:focus{outline:2px solid var(--teal);outline-offset:1px;}
+.bf-selects select:disabled{opacity:.5;cursor:not-allowed;}
+#bf-result{display:grid;gap:12px;margin-top:18px;}
+#bf-result:empty{display:none;}
+.bf-card{display:grid;gap:4px;padding:18px 20px;border-radius:12px;background:var(--teal-tint);text-decoration:none;color:var(--ink);transition:background .2s;}
+.bf-card:hover{background:#cde1de;}
+.bf-name{font-family:"GmarketSansBold","Pretendard",sans-serif;font-size:18px;color:var(--teal-dark);}
+.bf-addr{font-size:14px;color:var(--ink-soft);}
+.bf-go{font-size:14px;font-weight:700;color:var(--teal);margin-top:4px;}
+.bf-empty{margin:0;font-size:15px;color:var(--ink-soft);text-align:center;}
+@media(max-width:680px){.bf-selects{grid-template-columns:1fr;}.branch-finder{padding:20px;}}

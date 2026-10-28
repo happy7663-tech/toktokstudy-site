@@ -72,6 +72,24 @@
     </div>
   </section>
 
+  <section id="branch-finder-section" style="padding-top:20px;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">BRANCH</p>
+        <h2>가까운 와와학원 찾기</h2>
+        <p>시/도, 구/군, 동을 차례로 고르면 해당 지역의 와와학원 안내를 볼 수 있어요.</p>
+      </div>
+      <div class="branch-finder reveal" id="branch-finder">
+        <div class="bf-selects">
+          <label for="bf-si">시/도<select id="bf-si"></select></label>
+          <label for="bf-gu">구/군<select id="bf-gu"></select></label>
+          <label for="bf-dong">동<select id="bf-dong"></select></label>
+        </div>
+        <div id="bf-result"></div>
+      </div>
+    </div>
+  </section>
+
   <section style="padding-top:10px;">
     <div class="wrap">
       <div class="photo-row reveal">
@@ -345,6 +363,8 @@
   </div>
 </footer>
 
+<script src="js/branches.js"></script>
+<script src="js/branch-finder.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
