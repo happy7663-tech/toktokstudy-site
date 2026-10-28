@@ -57,4 +57,27 @@ const BRANCHES = [
   { si: "울산광역시", gu: "중구", dong: "남외동", name: "남외점", address: "울산 중구 남외3길 15 남외프라자 401호", file: "ulsan-namoe" },
   { si: "울산광역시", gu: "중구", dong: "복산동", name: "복산점", address: "울산 중구 번영로 461 B2동", file: "ulsan-boksan" },
 
+  // ===== 서울특별시 =====
+  { si: "서울특별시", gu: "강동구", dong: "명일동", name: "명일점", address: "서울 강동구 양재대로 1606 3층", file: "seoul-myeongil" },
+  { si: "서울특별시", gu: "강북구", dong: "미아동", name: "삼각산점", address: "서울 강북구 미아동 811-9 두산위브테라스파크 상가 402·403호", file: "seoul-samgaksan" },
+  { si: "서울특별시", gu: "강서구", dong: "마곡동", name: "내발산점", address: "서울 강서구 마곡중앙4로 74 이웰메디파크 4층 401·402호", file: "seoul-naebalsan" },
+  { si: "서울특별시", gu: "강서구", dong: "마곡동", name: "신방화점", address: "서울 강서구 방화대로 294 마곡더블유타워 505호", file: "seoul-sinbanghwa" },
+  { si: "서울특별시", gu: "강서구", dong: "염창동", name: "염창점", address: "서울 강서구 양천로67길 15 한희빌딩 202호", file: "seoul-yeomchang" },
+  { si: "서울특별시", gu: "광진구", dong: "구의동", name: "광장점", address: "서울 광진구 광나루로 584 동서울빌딩 5층", file: "seoul-gwangjang" },
+  { si: "서울특별시", gu: "구로구", dong: "신도림동", name: "신도림점", address: "서울 구로구 신도림로 20 해동빌딩 402호", file: "seoul-sindorim" },
+  { si: "서울특별시", gu: "금천구", dong: "시흥동", name: "금천점", address: "서울 금천구 금하로 763 벽산아파트 중심상가동 3층", file: "seoul-geumcheon" },
+  { si: "서울특별시", gu: "노원구", dong: "하계동", name: "하계점", address: "서울 노원구 노원로 257 401호", file: "seoul-hagye" },
+  { si: "서울특별시", gu: "동대문구", dong: "용두동", name: "제기점", address: "서울 동대문구 왕산로 61 302호", file: "seoul-jegi" },
+  { si: "서울특별시", gu: "마포구", dong: "상암동", name: "상암점", address: "서울 마포구 상암산로1길 73 202호", file: "seoul-sangam" },
+  { si: "서울특별시", gu: "마포구", dong: "용강동", name: "마포점", address: "서울 마포구 토정로 252 승지빌딩 3층", file: "seoul-mapo" },
+  { si: "서울특별시", gu: "서대문구", dong: "남가좌동", name: "가좌점", address: "서울 서대문구 가재울로 52 승우빌딩 301호", file: "seoul-gajwa" },
+  { si: "서울특별시", gu: "성북구", dong: "돈암동", name: "돈암점", address: "서울 성북구 동소문로 190 중앙빌딩 201호", file: "seoul-donam" },
+  { si: "서울특별시", gu: "성북구", dong: "동소문동", name: "동소문점", address: "서울 성북구 아리랑로7길 5 4층", file: "seoul-dongsomun" },
+  { si: "서울특별시", gu: "성북구", dong: "종암동", name: "종암점", address: "서울 성북구 종암로27길 13 도원프라자 501호", file: "seoul-jongam" },
+  { si: "서울특별시", gu: "송파구", dong: "장지동", name: "송파위례점", address: "서울 송파구 위례광장로 188 아이온스퀘어 8층 816호", file: "seoul-songpa-wirye" },
+  { si: "서울특별시", gu: "양천구", dong: "목동", name: "목동점", address: "서울 양천구 목동동로8길 23 메리트윈 3층 305호", file: "seoul-mokdong" },
+  { si: "서울특별시", gu: "영등포구", dong: "당산동", name: "당산점", address: "서울 영등포구 당산로44길 3 삼성타운 504호", file: "seoul-dangsan" },
+  { si: "서울특별시", gu: "은평구", dong: "역촌동", name: "구산점", address: "서울 은평구 연서로 130 4층", file: "seoul-gusan" },
+  { si: "서울특별시", gu: "은평구", dong: "진관동", name: "은평점", address: "서울 은평구 진관2로 29-21 드림스퀘어 804·805호 (영어·과학·사회), 609호 (국어) / 진관2로 19 휴먼프라자 312호 (수학)", file: "seoul-eunpyeong" },
+
 ];
