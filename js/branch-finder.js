@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!list.length) { result.innerHTML = ""; return; }
     result.innerHTML = list.map((b) => `
       <a class="bf-card" href="branch/${esc(b.file)}.html">
-        <span class="bf-name">와와학원 ${esc(b.name)}</span>
+        <span class="bf-name">와와학원 ${esc(b.name)} 공부방</span>
         <span class="bf-addr">${esc(b.address || "")}</span>
         <span class="bf-go">지점 안내 보기 →</span>
       </a>`).join("");
