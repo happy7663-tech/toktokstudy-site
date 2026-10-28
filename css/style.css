@@ -475,3 +475,8 @@ table.info tbody tr:last-child td{border-bottom:none;}
 .bf-go{font-size:14px;font-weight:700;color:var(--teal);margin-top:4px;}
 .bf-empty{margin:0;font-size:15px;color:var(--ink-soft);text-align:center;}
 @media(max-width:680px){.bf-selects{grid-template-columns:1fr;}.branch-finder{padding:20px;}}
+
+/* ---- 지점 페이지 카카오 지도 ---- */
+.branch-map{width:100%;height:360px;border-radius:var(--radius);border:1px solid var(--line);background:var(--teal-tint);overflow:hidden;margin-top:18px;}
+.branch-map-label{background:var(--teal-dark);color:#fff;font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 10px rgba(0,0,0,.18);}
+@media(max-width:680px){.branch-map{height:280px;}}
