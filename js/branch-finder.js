@@ -39,6 +39,38 @@ document.addEventListener("DOMContentLoaded", () => {
   fill(guSel, "구/군 선택", []);
   fill(dongSel, "동 선택", []);
 
+  // ----- 검색창: 시/구/동/지점명/주소 어디에든 들어 있으면 표시 -----
+  const qInput = document.getElementById("bf-q");
+  const norm = (s) => String(s || "").replace(/\s+/g, "").toLowerCase();
+  // "부산" → "부산광역시", "서울" → "서울특별시"처럼 줄임말도 찾도록 시/도 약칭을 함께 넣어 둠
+  const SI_ALIAS = { "충청북도": "충북", "충청남도": "충남", "전라북도": "전북", "전북특별자치도": "전북",
+    "전라남도": "전남", "경상북도": "경북", "경상남도": "경남" };
+  const siShort = (si) => si.replace(/(특별자치시|특별자치도|특별시|광역시|도)$/, "") + " " + (SI_ALIAS[si] || "");
+  const haystack = BRANCHES.map((b) =>
+    norm([b.si, siShort(b.si), b.gu, b.dong, b.name, b.name.replace(/점$/, ""), b.address].join(" ")));
+
+  function search(q) {
+    const words = q.trim().split(/\s+/).map(norm).map((w) => w.replace(/점$/, "")).filter(Boolean);
+    if (!words.length) { show([]); return; }
+    const hits = BRANCHES.filter((b, i) => words.every((w) => haystack[i].includes(w)))
+      .sort((a, b) => ko(a.si + a.gu + a.name, b.si + b.gu + b.name));
+    if (!hits.length) {
+      result.innerHTML = `<p class="bf-empty">'${esc(q.trim())}' 지역에서 찾은 지점이 없습니다. 다른 동네 이름으로 검색하거나, 상담 신청을 남겨주시면 가까운 지점을 안내해 드려요.</p>`;
+      return;
+    }
+    show(hits);
+    result.insertAdjacentHTML("afterbegin", `<p class="bf-count">검색 결과 ${hits.length}곳</p>`);
+  }
+
+  if (qInput) {
+    qInput.addEventListener("input", () => {
+      siSel.value = ""; fill(guSel, "구/군 선택", []); fill(dongSel, "동 선택", []);
+      search(qInput.value);
+    });
+  }
+  const clearQuery = () => { if (qInput) qInput.value = ""; };
+  [siSel, guSel, dongSel].forEach((s) => s.addEventListener("change", clearQuery));
+
   siSel.addEventListener("change", () => {
     const si = siSel.value;
     fill(guSel, "구/군 선택", si ? uniq(BRANCHES.filter((b) => b.si === si).map((b) => b.gu)) : []);
