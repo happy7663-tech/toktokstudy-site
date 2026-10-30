@@ -46,13 +46,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const SI_ALIAS = { "충청북도": "충북", "충청남도": "충남", "전라북도": "전북", "전북특별자치도": "전북",
     "전라남도": "전남", "경상북도": "경북", "경상남도": "경남" };
   const siShort = (si) => si.replace(/(특별자치시|특별자치도|특별시|광역시|도)$/, "") + " " + (SI_ALIAS[si] || "");
+  // 동·구·시 이름과 정확히 같은 검색어는 정확히 일치하는 지점만 보여 줌
+  // (예: "좌동" 검색 시 '가좌동'이 아니라 '좌동' 지점만)
+  const exactKeys = BRANCHES.map((b) => new Set([
+    b.si, ...siShort(b.si).split(" "), b.gu, ...b.gu.split(" "), b.dong, b.name, b.name.replace(/점$/, "")
+  ].map(norm).filter(Boolean)));
   const haystack = BRANCHES.map((b) =>
     norm([b.si, siShort(b.si), b.gu, b.dong, b.name, b.name.replace(/점$/, ""), b.address].join(" ")));
 
   function search(q) {
-    const words = q.trim().split(/\s+/).map(norm).map((w) => w.replace(/점$/, "")).filter(Boolean);
+    // "화명1동", "좌2동"처럼 행정동 번호가 붙어도 "화명동", "좌동"으로 찾도록 숫자를 뺌
+    const words = q.trim().split(/\s+/).map(norm)
+      .map((w) => w.replace(/점$/, "").replace(/(\D)\d+동$/, "$1동"))
+      .filter(Boolean);
     if (!words.length) { show([]); return; }
-    const hits = BRANCHES.filter((b, i) => words.every((w) => haystack[i].includes(w)))
+    let hits = BRANCHES.filter((b, i) => words.every((w) => exactKeys[i].has(w)));
+    if (!hits.length) hits = BRANCHES.filter((b, i) => words.every((w) => haystack[i].includes(w)));
+    hits = hits
       .sort((a, b) => ko(a.si + a.gu + a.name, b.si + b.gu + b.name));
     if (!hits.length) {
       result.innerHTML = `<p class="bf-empty">'${esc(q.trim())}' 지역에서 찾은 지점이 없습니다. 다른 동네 이름으로 검색하거나, 상담 신청을 남겨주시면 가까운 지점을 안내해 드려요.</p>`;
