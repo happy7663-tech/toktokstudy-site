@@ -87,15 +87,20 @@
           </div>
           <div class="field">
             <label>희망 수업 방식</label>
-            <div class="radio-row">
-              <label><input type="radio" name="mode" value="offline" checked />방문과외</label>
-              <label><input type="radio" name="mode" value="video" />화상</label>
-              <label><input type="radio" name="mode" value="undecided" />아직 고민중</label>
+            <div class="radio-row" style="flex-wrap:wrap;">
+              <label><input type="radio" name="mode" value="방문과외" checked />방문과외</label>
+              <label><input type="radio" name="mode" value="화상과외" />화상과외</label>
+              <label><input type="radio" name="mode" value="와와학원" />와와학원</label>
+              <label><input type="radio" name="mode" value="회화수업" />회화수업</label>
             </div>
           </div>
           <div class="field">
             <label for="memo">문의 내용</label>
             <textarea id="memo" name="memo" placeholder="희망 과목, 목표, 궁금한 점을 자유롭게 남겨주세요."></textarea>
+          </div>
+          <div class="field" style="font-size:13px;line-height:1.6;color:#555;">
+            <p style="margin:0 0 6px;">수집 항목: 이름, 연락처 · 수집 목적: 교육 상담 신청 접수 및 안내 연락 · 보유 기간: 상담 완료 후 1년 (<a href="privacy.html">개인정보처리방침</a>)</p>
+            <label><input type="checkbox" id="privacy" name="privacy" required style="margin-right:6px;" />개인정보 수집·이용에 동의합니다 (필수)</label>
           </div>
           <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">상담 신청하기</button>
           <p class="form-status"></p>

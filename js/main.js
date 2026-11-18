@@ -28,17 +28,49 @@ document.addEventListener("DOMContentLoaded", () => {
     revealEls.forEach((el) => el.classList.add("in"));
   }
 
-  // consult form (front-end only demo)
+  // consult form -> Notion (via consultation-form server), then /thanks for Google Ads conversion
   const form = document.querySelector("form.consult");
   if (form) {
-    form.addEventListener("submit", (e) => {
+    const typeParam = new URLSearchParams(location.search).get("type");
+    const typeMap = { video: "화상과외", tutoring: "방문과외", wawa: "와와학원", conversation: "회화수업" };
+    if (typeParam && typeMap[typeParam]) {
+      const r = form.querySelector('input[name="mode"][value="' + typeMap[typeParam] + '"]');
+      if (r) r.checked = true;
+    }
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const status = form.querySelector(".form-status");
-      if (status) {
-        status.style.display = "block";
-        status.textContent = "상담 신청이 접수되었습니다. 담당 선생님이 곧 연락드릴게요.";
+      const btn = form.querySelector('button[type="submit"]');
+      const say = (msg) => { if (status) { status.style.display = "block"; status.textContent = msg; } };
+      const name = form.querySelector("#name").value.trim();
+      const grade = form.querySelector("#grade").value;
+      const phone = form.querySelector("#contact").value.trim();
+      const modeEl = form.querySelector('input[name="mode"]:checked');
+      const mode = modeEl ? modeEl.value : "";
+      const memo = form.querySelector("#memo").value.trim();
+      const privacy = form.querySelector("#privacy");
+      if (!name || !grade || !phone) { say("이름, 학년, 연락처를 입력해주세요."); return; }
+      if (privacy && !privacy.checked) { say("개인정보 수집·이용에 동의해주세요."); return; }
+      const detail = "학년: " + grade + (memo ? "\n" + memo : "") + "\n(신청 경로: toktokstudy.com/consult)";
+      const body = { properties: {
+        "이름": { title: [{ text: { content: name } }] },
+        "연락처": { phone_number: phone },
+        "상담 종류": { select: { name: mode } },
+        "추가 요청사항": { rich_text: [{ text: { content: detail } }] }
+      } };
+      if (btn) { btn.disabled = true; btn.textContent = "접수 중..."; }
+      try {
+        const res = await fetch("https://wawa-consultation-form.onrender.com/page", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) throw new Error("오류 코드 " + res.status);
+        location.href = "/thanks?from=form";
+      } catch (err) {
+        say("전송에 실패했습니다. 잠시 후 다시 시도하시거나 010-8543-7663으로 연락주세요.");
+        if (btn) { btn.disabled = false; btn.textContent = "상담 신청하기"; }
       }
-      form.reset();
     });
   }
 
